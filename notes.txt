@@ -1,3 +1,38 @@
+frontnd:
+
+atomic design-pattern:
+ What is Atomic Design?
+Atomic Design is a methodology for building design systems and UI components in a structured, reusable way — inspired by chemistry.
+
+It breaks down UI into 5 hierarchical levels:
+atoms-molecules-organisms-templates-pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bcknd:
+
+
+
+
+
+
+
+
+
+git commands:
+
+
 git add .
 git commit -m "msg"
 git push origin master
