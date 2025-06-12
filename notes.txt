@@ -32,7 +32,20 @@ bcknd:
 
 git commands:
 
+do it in IDX_CLONE folder:
 
-git add .
-git commit -m "msg"
-git push origin master
+initial steps:
+
+ touch README.md
+ git init
+ git remote add origin <github-repo-link>
+ git add .
+ git commit -m "msg"
+ git checkout -b master
+ git push origin master
+
+repeat for updation:
+
+ git add .
+ git commit -m "msg"
+ git push origin master
