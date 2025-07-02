@@ -22,6 +22,8 @@ atoms-molecules-organisms-templates-pages
 
 bcknd:
 
+websockets run based on event based mechanism by event handler 
+
 
 
 
@@ -49,3 +51,44 @@ repeat for updation:
  git add .
  git commit -m "msg"
  git push origin master
+
+
+
+ 
+
+ How HTTP Works (Uses TCP)
+HTTP (HyperText Transfer Protocol) is the protocol browsers use to talk to web servers.
+
+It's a request-response model:
+→ Client sends a request (e.g., “GET /index.html”)
+← Server sends a response (e.g., HTML content)
+
+HTTP runs on top of TCP (usually port 80 or 443 for HTTPS).
+
+✅ TCP ensures that the data arrives in order, without loss, and without duplication.
+
+TCP is connection-oriented. Before HTTP data can flow:
+
+TCP does a 3-way handshake (to establish connection).
+
+Then HTTP data is exchanged over that TCP connection.
+
+
+ WebSockets (Full-Duplex over TCP)
+WebSocket is another application layer protocol, like HTTP, but designed for real-time, two-way communication.
+
+It starts as an HTTP request (called “WebSocket handshake”), but then “upgrades” the connection to a persistent TCP stream.
+
+✅ After upgrade, both client and server can send messages any time (no more request/response model).
+
+Example Use Cases:
+
+Chat apps
+
+Live notifications
+
+Online games
+
+
+
+chokidar library :watches file changes better than fs module

@@ -4,6 +4,12 @@ import { getProjectTree } from '../apis/projects';
 
 const queryClient = new QueryClient();
 
+//fetchQuery is used to fetch data and cache it 
+
+
+//in this function ,fetchQuery is used to fetch the project tree structure based on the projectId
+//and then set the treeStructure state with the fetched data
+
 export const useTreeStructureStore = create((set, get) => ({
     projectId: null,
     treeStructure: null,

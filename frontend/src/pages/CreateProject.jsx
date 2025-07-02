@@ -47,8 +47,11 @@ export const CreateProject = () => {
     const { createProjectMutation } = useCreateProject();
 
     async function handleCreateProject() {
+
         console.log('Going to trigger api');
+
         try {
+            
           const response =  await createProjectMutation();
 
           navigate(`/project/${response.data}`);

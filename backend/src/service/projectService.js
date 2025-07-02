@@ -7,6 +7,7 @@ const require = createRequire(import.meta.url);
 const directoryTree = require('directory-tree');
 import path from 'path';
 
+
 export const  createProjectService = async() => {
 
  //check if the projects folder exists, if not create it
@@ -41,7 +42,9 @@ export const getProjectTreeService = async(projectId) => {
     console.log("Fetching project tree for project ID:", projectId);
 
     const projectPath = path.resolve(`./projects/${projectId}`);
+    
     const projectTree = directoryTree(projectPath); 
+    console.log("Project tree fetched successfully:", projectTree);
     return projectTree;
 
 }
