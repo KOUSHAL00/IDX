@@ -92,3 +92,10 @@ Online games
 
 
 chokidar library :watches file changes better than fs module
+
+dockerode package:The dockerode package is a Node.js library that provides a programmatic interface for interacting with the Docker Engine API.
+ It allows developers to manage Docker containers, images, networks, and volumes directly from their JavaScript or TypeScript code. With dockerode,
+  you can automate tasks such as creating, starting, stopping, and removing containers, as well as building images and managing Docker resources,
+ all without needing to use the Docker CLI manually.
+
+node js stream : read large amount of data as chunks 

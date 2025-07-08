@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-//import { getContainerPort } from "../containers/handleContainerCreate.js";
+import { getContainerPort } from "../containers/handleContainerCreate.js";
 
 export const handleEditorSocketEvents = (socket, editorNamespace) => {
 
@@ -101,12 +101,44 @@ export const handleEditorSocketEvents = (socket, editorNamespace) => {
         }
     });
 
-    // socket.on("getPort", async ({ containerName }) => {
-    //     const port = await getContainerPort(containerName);
-    //     console.log("port data", port);
-    //     socket.emit("getPortSuccess", {
-    //         port: port,
-    //     })
-    // })
+    //rename file 
+    socket.on("renameFile", async ({ oldPath, newPath }) => {
+        try {
+            const response = await fs.rename(oldPath, newPath);
+            socket.emit("renameFileSuccess", {
+                data: "File renamed successfully",
+            });
+        } catch(error) {
+            console.log("Error renaming the file", error);
+            socket.emit("error", {
+                data: "Error renaming the file",
+            });
+        }
+    });
+
+    //rename folder
+    socket.on("renameFolder", async ({ oldPath, newPath }) => {
+        try {
+            const response = await fs.rename(oldPath, newPath);
+            socket.emit("renameFolderSuccess", {
+                data: "Folder renamed successfully",
+            });
+        } catch(error) {
+            console.log("Error renaming the folder", error);
+            socket.emit("error", {
+                data: "Error renaming the folder",
+            });
+        }
+    });
+
+    
+
+    socket.on("getPort", async ({ containerName }) => {
+        const port = await getContainerPort(containerName);
+        console.log("port data", port);
+        socket.emit("getPortSuccess", {
+            port: port,
+        })
+    })
 
 }

@@ -9,6 +9,10 @@ import chokidar from 'chokidar'; // For file watching
 import path from 'path'; // For handling file paths
 import { handleEditorSocketEvents } from './socketHandlers/editorHandler.js';
 
+import { WebSocketServer } from 'ws'; // For WebSocket server
+import { handleContainerCreate } from './containers/handleContainerCreate.js';
+import { handleTerminalCreation } from './containers/handleTerminalCreation.js';
+
 const app = express();
 const server = createServer(app);
 const io = new Server(server,{
@@ -23,6 +27,9 @@ const io = new Server(server,{
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+
+app.use('/api',apiRouter);
 
 
 // Socket.io connection
@@ -49,9 +56,11 @@ editorNamespace.on('connection', (socket) => {
 
     console.log("Project ID received after connection:", projectId);
 
+    let watcher; // Declare watcher outside the if block
+
     if(projectId)
     {
-        var watcher = chokidar.watch(`./projects/${projectId}`, {
+        watcher = chokidar.watch(`./projects/${projectId}`, {
             ignored:(path)=>path.includes('node_modules'),
             persistent: true, //keeps watcher in runnning state till the time app is running
 
@@ -71,15 +80,18 @@ editorNamespace.on('connection', (socket) => {
     handleEditorSocketEvents(socket,editorNamespace); // Handle editor-specific socket events
 
     socket.on('disconnect', async() => {
-        await watcher.close(); // Close the watcher when the socket disconnects
+        if (watcher) {
+            await watcher.close(); // Close the watcher when the socket disconnects
+        }
         console.log('Editor disconnected');
     });
 
-});   
+}); 
 
 
-app.use('/api',apiRouter);
 
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     });
+
+
