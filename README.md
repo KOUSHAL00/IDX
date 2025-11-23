@@ -2,7 +2,7 @@ A browser-based IDE built with Monaco Editor, xterm.js, Socket.IO, Docker, and R
 
 🚀 Project Summary
 
-This project provides a cloud/local development environment within your browser. Users can:
+This project provides a local development environment within your browser. Users can:
 Edit files using the Monaco Editor (VS Code powered)
 Run shell commands and see live terminal output using xterm.js
 Create and bootstrap React projects on demand inside isolated Docker containers
@@ -21,3 +21,4 @@ Support for creating dynamic React projects (via Vite) inside containers
 Frontend: React, Monaco Editor, xterm.js, Socket.IO-client
 Backend: Node.js, Express, Socket.IO, Docker (dockerode or Docker CLI), fs
 Dev tooling: Docker, Docker Compose
+
